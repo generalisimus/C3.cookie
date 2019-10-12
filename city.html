@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-2.2.4.min.js"></script>
+
+</head>
+<body>	
+	<input required id="city" name="city" type="text" placeholder="Введите ваш город">
+	<button id="ban" name="ban">Сохранить</button>
+	<button id="remove">Очистить</button>
+	<p>Ваш город <span id="textx"></span></p>
+	<hr>
+	<script>
+		function getCookie(name) {
+			let matches = document.cookie.match(new RegExp(
+			"(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+			));
+			return matches ? decodeURIComponent(matches[1]) : undefined;
+		};
+		function deleteCookie(cname) {
+			var a = new Date();
+			a.setTime(a.getTime() - (1000*60*60*24));
+			var expires = "expires=" + a.toGMTString();
+			window.document.cookie = cname+"="+"; "+expires;
+		}
+
+		$(function() {
+			$("#ban").hide();
+			$("#city").keyup(function() {
+				$("#ban").show();
+			});
+			var bro = document.querySelector("#city");
+	
+			$("#ban").click(function(){
+				document.cookie = encodeURIComponent("city") + "=" + encodeURIComponent(bro.value);
+				$("#textx").text(getCookie("city"));
+				$("#city").hide();
+				$("#ban").hide();
+			});
+	
+			$("#textx").text(getCookie("city"));
+	
+			$("#remove").click(function() {
+				deleteCookie("city");
+				document.location.reload(true);
+			});
+		});		
+	</script>
+	
+</body>
+</html>

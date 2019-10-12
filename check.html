@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-2.2.4.min.js"></script>
+<body>		
+	<p><input id="check-one" name="one" type="checkbox">Я согласен</p>
+	<p><input id="check-two" name="two" type="checkbox">Не согласен</p>
+	<p><input id="check-three" name="three" type="checkbox">Позвоните позднее</p>
+	<p><input id="check-four" name="four" type="checkbox">Позвоните завтра</p>
+	<p><input id="check-five" name="five" type="checkbox">С информацией согласен</p>
+	<p><input id="check-six" name="six" type="checkbox">Не против обработки личных данных</p>
+
+	<button id="save">Сохранить</button>
+	<!--<button id="remove">Очистить</button>-->
+		
+	
+	<script>
+		function getCookie(name) {
+			let matches = document.cookie.match(new RegExp(
+			"(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+			));
+			return matches ? decodeURIComponent(matches[1]) : undefined;
+		};
+
+		function deleteCookie(cname) {
+			var a = new Date();
+			a.setTime(a.getTime() - (1000*60*60*24));
+			var expires = "expires=" + a.toGMTString();
+			window.document.cookie = cname+"="+"; "+expires;
+		};
+
+		let date = new Date(Date.now() + 86400e3);
+		date = date.toUTCString();
+		
+		$(function() {
+
+			if (one != getCookie("one")) {
+				
+				$("#check-one").attr("disabled", true);
+				$("#check-one").attr("checked", true);
+			};
+			
+			
+
+			if (two != getCookie("two")) {
+				
+				$("#check-two").attr("disabled", true);
+				$("#check-two").attr("checked", true);
+			};
+			
+
+			if (three != getCookie("three")) {
+				
+				$("#check-three").attr("disabled", true);
+				$("#check-three").attr("checked", true);
+			};
+			
+
+			if (four != getCookie("four")) {
+				
+				$("#check-four").attr("disabled", true);
+				$("#check-four").attr("checked", true);
+			};
+
+			if (five != getCookie("five")) {
+				
+				$("#check-five").attr("disabled", true);
+				$("#check-five").attr("checked", true);
+			};
+
+			if (six != getCookie("six")) {
+				
+				$("#check-six").attr("disabled", true);
+				$("#check-six").attr("checked", true);
+			};
+			if (seven != getCookie("seven")) {
+				$("input").attr("disabled", true);
+			};
+
+			var one = document.querySelector("#check-one");
+			var two = document.querySelector("#check-two");
+			var three = document.querySelector("#check-three");
+			var four = document.querySelector("#check-four");
+			var five = document.querySelector("#check-five");
+			var six = document.querySelector("#check-six");
+			var seven = document.querySelector("#save");
+
+			$("#check-one").click(function(){
+				document.cookie = "one=1; max-age=3600000";
+			});
+
+			$("#check-two").click(function(){
+				document.cookie = "two=2; max-age=3600000"; 
+			});
+
+			$("#check-three").click(function(){
+				document.cookie = "three=3; max-age=3600000";
+			});
+
+
+			$("#check-four").click(function(){
+				document.cookie = "four=4; max-age=3600000";
+			});
+
+			$("#check-five").click(function(){
+				document.cookie = "five=5; max-age=3600000";
+			});
+
+			$("#check-six").click(function(){
+				document.cookie = "six=6; max-age=3600000";
+			});
+
+			$("#save").click(function() {
+				document.cookie = "seven=7; max-age=3600000";
+			});
+
+			$("#save").click(function() {
+				$("input").attr("disabled", true)
+				$(this).hide()
+			});
+
+			/*$("#remove").click(function() {
+				deleteCookie("one");
+				deleteCookie("two");
+				deleteCookie("three");
+				deleteCookie("four");
+				deleteCookie("five");
+				deleteCookie("six");
+				deleteCookie("seven");
+				document.location.reload(true);
+			});*/
+		});
+	</script>
+
+</body>
+</html>
